@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,17 +86,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         }
 #     }
 
-DATABASES = {
-    'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ycGuzfRAXWqAxUZyzRyvXqwwLPNbXiVg',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '53474',
+if DEBUG:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    DATABASES = {
+        'default': {
+            #'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'railway',
+            'USER': 'postgres',
+            'PASSWORD': 'ycGuzfRAXWqAxUZyzRyvXqwwLPNbXiVg',
+            'HOST': 'viaduct.proxy.rlwy.net',
+            'PORT': '53474',
+        }
     }
-}
 
 
 # Password validation
